@@ -1,0 +1,71 @@
+---
+title: "Testat_TomKlose"
+subtitle: "Ego-Netzwerke"
+author: "Swaran Sandhu"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+**igraph-Objekt erstellen (Ego-Netzwerk)**
+
+```{r Netzwerk einlesen, fig.height=6, fig.width=10, message=FALSE, warning=TRUE, paged.print=FALSE}
+
+library(igraph)
+
+# Edge- und Nodelist vorbereiten
+el <- read.csv("https://raw.githubusercontent.com/tkhdm/testatvfbtk164/main/Edgelist_Testat_tk164.csv", header=T, as.is=T, sep = ",")
+
+
+nodes <- read.csv("https://raw.githubusercontent.com/tkhdm/testatvfbtk164/main/Nodelist_Testat_tk164.csv", header=T, as.is=T, sep = ",")
+
+edgematrix <-as.matrix(el)
+
+#igraph Objekt erstellen
+vfbtransfermarkt <- graph_from_data_frame(d=edgematrix, directed=T)
+vfbtransfermarkt
+```
+
+# Netzwerkvisualisierung
+
+```{r Netzwerk visualisieren, fig.height=6, fig.width=10}
+
+plot(vfbtransfermarkt, 
+		 asp=0,
+     layout=layout_nicely,
+     main="VfB Transfer Netzwerk",
+     sub="tk164",
+     vertex.color="lightgreen",
+     vertex.frame.color=NA,
+     edge.color="black",
+     edge.arrow.size=.5,
+		 vertex.size=6,
+		 vertex.label.color="black")
+```
+```{r}
+
+#Codebuch tk164	(Vfb-Transfer)				
+					
+#Wert	/   Benennung	
+
+#nodelist	
+
+#id	      Vereinsname/Rückennummer/Nationalität				
+#country	Land				
+#name	    Spieler/Vereinsname				
+#type1	  Spieler 				
+#type2	  Verein				
+					
+#edgelist					
+#from	    Aus welchem Land bzw. Verein kommt der Spieler/Rückennummer				
+#to 	    Spieler ID (Rückennummer)				
+#weight	  Transfersumme in 100.000 Euro Schritten, gerundet falls abweichend.		(Wie von ihnen angegeben)		
+#season	  transferfenster. nur erste Jahreszahl des Fensters als JJJJ verwenden.	(Wie von ihnen angegeben)			
+					
+#NA	      definiert fehlende Werte, bei der Datenerhebung das Feld einfach leer lassen, R rechnet NAs (missing values)               automatisch raus.	(Wie von ihnen angegeben)			
+
+```
+
