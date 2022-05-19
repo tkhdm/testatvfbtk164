@@ -1,0 +1,18 @@
+Codebuch tk164,
+,
+,
+Wert,Benennung
+nodelist,
+id,Vereinsname/Rückennummer/Nationalität
+country,Land
+name,Spielername/Vereinsname
+type1,Spieler 
+type2,Verein
+,
+edgelist,
+from,Aus welchem Land bzw. Verein kommt der Spieler/Rückennummer
+to ,ID des Spielers (Rückennummer)
+weight,"Transfersumme in 100.000 Euro Schritten, gerundet falls abweichend. (Wie von ihnen angegeben)	"
+season,transferfenster. nur erste Jahreszahl des Fensters als JJJJ verwenden. (Wie von ihnen angegeben)	
+,
+NA,"definiert fehlende Werte, bei der Datenerhebung das Feld einfach leer lassen, R rechnet NAs (missing values) automatisch raus. (Wie von ihnen angegeben)	"
